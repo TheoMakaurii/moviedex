@@ -9,10 +9,15 @@ const MOVIES = require('./movies-data-small.json');
 const app = express();
 
 app.use(morgan('dev'));
-app.use(cors());
 app.use(helmet());
+app.use(cors());
+
+
 
 app.use(function validateBearerToken(req, res, next) {
+
+  console.log('lets validate bearer token!!');
+
   const apiToken = process.env.API_TOKEN;
   const authToken = req.get('Authorization');
   if (!authToken || authToken.split(' ')[1] !== apiToken) {

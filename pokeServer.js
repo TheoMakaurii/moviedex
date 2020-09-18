@@ -7,12 +7,14 @@ const cors = require('cors');
 const helmet = require('helmet');
 const app =express();
 
-app.use(cors());
 app.use(helmet());
+app.use(cors());
 app.use(morgan('dev'));
+
+
 app.use(function validateBearerToken(req, res, next){
 
-    console.log('lets validate bearer token')
+  console.log('lets validate bearer token')
 
   //const bearerToken= req.get('Authorization').split(' ')[1];
   const authToken = req.get('Authorization');
